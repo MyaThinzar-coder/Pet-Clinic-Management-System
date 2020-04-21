@@ -9,6 +9,7 @@ Doctor must register his user id starting with with did(eg:did01) and update pas
 Owner must register his user id starting with oid(eg:oid0001) and update password. Owner can  register more than one pet and update pet information. Owner can also make appointment for treatment before three days by viewing doctors’ schedule.
 Owner can also check his pet drug time.
 
+
 # Aims and Objectives
 
 •	Perform record’s handling of pet’s information
@@ -16,6 +17,7 @@ Owner can also check his pet drug time.
 •	Provide checkup history and detailed pet’s records to the client
 •	Provide the notification for expired vaccines
 •	Generate reports of the pets and inventory
+
 
 # Applied Software
 

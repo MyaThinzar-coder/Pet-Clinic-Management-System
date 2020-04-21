@@ -1,0 +1,212 @@
+insert into pet_login values
+('id01',md5('susu'));
+insert into pet_login values
+('id03',md5('toetoe'));
+insert into pet_login values
+('id04',md5('ayeaye'));
+
+insert into pet_login values
+('did01',md5('hlahla'));
+
+insert into pet_login values
+('oid0001',md5('myamya'));
+
+insert into pet_login values
+('oid0002',md5('umyint'));
+
+insert into owner values
+('oid0001','Mya Mya','093535335','myamya@gmail.com','yangon');
+-----------------------------------------------
+select pet.*,owner.*,species.*
+		from ((pet
+		inner join species on pet.species_id=species.species_id)
+		inner join owner on pet.owner_id=owner.owner_id);
+----------------------------------------------------------------------
+select * from pet
+where species_id=1
+and owner_id="oid0001";
+--------------------------------------------------------------------------
+select o.*,s.*,p.* 
+	from owner o,species s,pet p
+	where o.owner_id="oid0001"
+	and s.species_id=1
+	and p.owner_id=o.owner_id
+	and p.species_id=s.species_id;
+------------------------------------------------------
+select o.*,s.*,p.* 
+	from owner o,species s,pet p
+	where o.owner_id="oid0001"
+	and p.owner_id=o.owner_id
+	and p.species_id=s.species_id;
+------------------------------------------------
+final version1=Prj_PetClinic_V12 or Prj_PetClinic_02
+-----------------------------------------------
+select u.*,b.* 
+from blog b,user u 
+where b.user_id=2
+and b.user_id=u.user_id;
+------------------------------
+toetoewin
+----------------------------------------
+select p.* 
+from pet p
+where p.owner_id="oid0014"
+and p.species_id=5
+and p.pet_id="pid_00027";
+---------------------------------
+update pet set
+pet_name="Mickey Bunny"
+where pet_id="pid_00001"
+and species_id=1
+and owner_id="oid0001";
+
+create table sample;
+---------------------------
+CREATE TABLE sample
+(app_time time
+);
+-------------------------------------
+doctor_id=did02;
+doctor_password=toetoe;
+---------------------------------------
+select d.*,s.*
+from doctor d,doctor_schedule s
+where d.doctor_id="did01"
+and s.doctor_id=d.doctor_id;
+-------------------------------------
+select s.* 
+from doctor_schedule s
+where s.doctor_id="did01"
+and s.schedule_id=20;
+------------------------
+select *
+from doctor_schedule
+where doctor_id="did01"
+and schedule_id=20;
+--------------------
+select d.doctor_name,s.day_name,s.start_time,s.end_time
+from doctor d,doctor_schedule s
+where s.doctor_id=d.doctor_id;
+-----------------------------
+select d.doctor_name,s.day_name,s.start_time,s.end_time
+from doctor d,doctor_schedule s
+where s.doctor_id=d.doctor_id
+and d.doctor_name="Daw Hla";
+-------------------------------
+select s.day_name,d.doctor_name,d.doctor_rank,s.start_time,s.end_time
+from doctor d,doctor_schedule s
+where  s.doctor_id=d.doctor_id
+and s.day_name=substring((upper(dayname(curdate()+3))),1,3);
+--------------------------------------
+SELECT * FROM doctor_schedule
+WHERE day_name BETWEEN curdate() and curdate() + interval 3 day
+ORDER BY day_name;
+--------------------------
+select * from doctor_schedule where day_name IN (substring((upper(dayname(curdate()+1))),1,3);
+----------------------
+select substring((upper(dayname(curdate()+1))),1,3);
+------------------------------------------
+set @myDay='select dayname(curdate()+1)';
+set @mySubDay='select substring((upper(@myDay)),1,3)';
+select @mySubDay;
+------------------------------
+select s.day_name,d.doctor_name,d.doctor_rank,s.start_time,s.end_time
+from doctor d left outer join doctor_schedule s on
+d.doctor_id=s.doctor_id
+where s.day_name=substring((upper(dayname(curdate()+3))),1,3);
+---------------------------
+select d.*,s.*
+from doctor d,doctor_schedule s
+where s.doctor_id=d.doctor_id;
+-----------------------------
+select curdate() + interval 3 day;
+------------------------------------
+select o.*,a.*
+from owner o,appointment a
+where o.owner_id=a.owner_id;
+--------------------------------
+select p.*,o.*,s.*
+from pet p,owner o,species s
+where  b
+and p.owner_id=o.owner_id
+and p.species_id=s.species_id;
+
+-----------------------------------------
+select p.*,o.owner_name,o.owner_ph,o.owner_email,o.owner_add
+from pet p,owner o
+where p.owner_id=o.owner_id;
+---------------------------
+select a.*,p.*
+from appointment a,owner o,pet p
+where a.owner_id=o.owner_id
+and o.owner_id=p.owner_id;
+---------------------------------------
+select a.*,p.*
+from appointment a,owner o,pet p,pet_drug pd
+where a.owner_id=o.owner_id
+and o.owner_id=p.owner_id
+and p.pet_id=pd.pet_id;
+---------------------------------------
+select pd.*
+from pet_drug pd,pet p
+where p.pet_id=pd.pet_id;
+--------------------------
+select * from pet where pet_id="pid_00001";
+----------------------------------
+select p.*,o.*,s.*,a.*
+from pet p,owner o,species s,appointment a
+where (p.pet_death is NULL)
+and p.owner_id=o.owner_id
+and o.owner_id=a.owner_id
+and p.species_id=s.species_id
+and p.pet_id="pid_00001";
+
+--------------------------
+select dt.*
+from drug_type dt
+where drug_id=34;
+-------------------------
+select p.*,d.*,pd.*,dt.*
+from pet p,doctor d,pet_drug pd,drug_type dt
+where pd.doctor_id=d.doctor_id
+and pd.drug_id=dt.drug_id
+and pd.pet_id=p.pet_id
+order by pd.pet_id;
+----------------------------------
+select p.*,pd.*,dt.*
+from pet p,drug_type dt,pet_drug pd
+where pd.drug_id=dt.drug_id
+and pd.pet_id=p.pet_id
+and p.pet_id="pid_00001";
+---------------------------------
+select p.* from pet p,owner o
+where p.owner_id=o.owner_id
+and o.owner_id="oid0002";
+--------------------------
+select o.*,pd.*,p.*
+from owner o,pet_drug pd,pet p
+where pd.pet_id=p.pet_id
+and p.owner_id=o.owner_id
+and o.owner_id=;
+-----------------------------------
+//pet history
+select a.*,o.*,p.*,pd.*,d.*,s.*
+from appointment a,owner o,pet p,pet_drug pd,doctor d,doctor_schedule s
+where a.owner_id=o.owner_id
+and o.owner_id=p.owner_id
+and p.pet_id=pd.pet_id
+and pd.doctor_id=d.doctor_id
+and d.doctor_id=s.doctor_id;
+---------------------------
+select pd.*,p.* 
+from pet_drug pd,pet p
+where pd.pet_id=p.pet_id;
+-----------------------
+//appointment list to show in pet search treatment
+select d.*,s.*,a.*,o.*,p.*
+from doctor d,doctor_schedule s,appointment a,owner o,pet p
+where d.doctor_id=s.doctor_id
+and d.doctor_id="did02"
+and s.start_time=a.app_time
+and a.owner_id=o.owner_id
+and o.owner_id=p.owner_id;
